@@ -3,7 +3,17 @@ extends layouts/layout
 block content
   main
     h2 All Articles
-    //- article list here
+    .article-list
+      include partials/list
   footer
     h2 Add a New Article
-    //- form here later
+      form(
+        method="post"
+        action="/articles"
+        hx-target=".article-list"
+        hx-push-url="false"
+        hx-on:htmx:after-request="document.querySelector('form').reset()"
+        )
+        input(type="text" name="name" placeholder="Article name" required)
+        textarea(name="body" placeholder="Article body" required)
+        button.btn(type="Submit") Add article

@@ -3,10 +3,12 @@ html
   head
     title #{title}
     link(rel="stylesheet", href="/styles.css")
-    script(src="https://unpkg.com/htmx.org@1.9.12")
-  body
+    script(src=`https://unpkg.com/htmx.org@1.9.12`)
+  body(hx-boost="true" hx-indicator=".loader")
     header
       nav
         img(src="/shuriken.png")
         h1 The Dojo Chronicles
-    block content
+    div(hx-history-elt)
+      block content
+    include ../partials/loader
